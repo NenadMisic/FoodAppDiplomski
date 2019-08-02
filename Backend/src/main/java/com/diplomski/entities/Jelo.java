@@ -1,0 +1,83 @@
+package com.diplomski.entities;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="jelo")
+public class Jelo {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="jelo_id")
+    private Integer jeloId;
+
+	@Column(name="ime_jela")
+	private String name;
+
+	@Column(name="opis_jela")
+	private String description;
+    
+	@Column(name="cena")
+    private Integer price;
+    
+	@Column(name="img_url")
+    private String imgUrl;
+
+    @Column(name="restoran_id")
+    private Integer restoranId;
+
+    public Integer getJeloId() {
+		return jeloId;
+	}
+    
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public Integer getRestoranId() {
+		return restoranId;
+	}
+
+	public void setRestoranId(Integer restoranId) {
+		this.restoranId = restoranId;
+	}
+	
+	@Override
+	public String toString() {
+		return this.name + ", " + this.description + ", " + this.price + ", " + this.imgUrl + ", " + this.restoranId;
+	}
+	
+}

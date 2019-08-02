@@ -1,0 +1,56 @@
+package com.diplomski.services;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.diplomski.entities.Sastojak;
+import com.diplomski.entities.SastojciZaJelo;
+import com.diplomski.model.SastojakModel;
+import com.diplomski.repositories.SastojakRepository;
+import com.diplomski.repositories.SastojciZaJeloRepository;
+
+@Service
+public class SastojakService {
+	
+	@Autowired
+	private SastojakRepository sastojakRepository;
+	
+	@Autowired
+	private SastojciZaJeloRepository sastojciZaJeloRepository;
+	
+	public void addSastojke(ArrayList<Sastojak> sastojci)  {
+		
+		sastojci.forEach(sastojak -> {
+			sastojakRepository.save(sastojak);
+		});	
+	}
+	
+	private ArrayList<SastojciZaJelo> findSastojkeForFood(Integer jeloId) {
+		
+		ArrayList<SastojciZaJelo> sastojci = new ArrayList<>();
+		System.out.println("######################################");
+		sastojciZaJeloRepository.findByJeloId(jeloId).forEach(sastojak -> {
+			System.out.println(sastojak.toString());
+			sastojci.add(sastojak);
+		});
+		System.out.println("######################################");
+		return sastojci;
+	}
+	
+	public ArrayList<SastojakModel> findAllForFood(Integer jeloId) {
+		
+		ArrayList<SastojciZaJelo> sastojciZaJelo = findSastojkeForFood(jeloId);
+		ArrayList<SastojakModel> sastojci = new ArrayList<>();
+		sastojciZaJelo.forEach(sastojakZaJelo -> {
+			System.out.println(sastojakZaJelo.toString());
+			Sastojak sastojak = sastojakRepository.findOneBySastojakId(sastojakZaJelo.getSastojakId());
+			sastojci.add(new SastojakModel(sastojak.getName(), sastojakZaJelo.getKolicina(), sastojak.getUnit()));
+			System.out.println(sastojak.toString());
+			System.out.println("Do ovde radi SastojakService -> 49");
+		});
+		System.out.println("Do ovde radi SastojakService -> 51");
+		return sastojci;
+	}
+}
