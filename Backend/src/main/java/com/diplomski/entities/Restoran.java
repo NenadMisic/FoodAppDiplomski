@@ -30,6 +30,16 @@ public class Restoran {
 
 	@Column(name="telefon")
     private String phone;
+	
+	public Restoran () {}
+	public Restoran (Integer restoranId, String name, String description, String adress, String imgUrl, String phone) {
+		this.restoranId = restoranId;
+		this.name = name;
+		this.description = description;
+		this.adress = adress;
+		this.imgUrl = imgUrl;
+		this.phone = phone;
+	}
 
 
     public Integer getRestoranId() {
@@ -75,4 +85,10 @@ public class Restoran {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	@Override
+	public String toString() {
+		return "Restoran: " + this.restoranId + ", " + this.name + ", " + this.description + ", " + this.adress + ", " + this.imgUrl + ", " + this.phone;
+	}
+	
 }

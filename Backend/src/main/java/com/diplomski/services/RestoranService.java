@@ -16,15 +16,38 @@ public class RestoranService {
 	@Autowired
 	private RestoranRepository restoranRepository;
 	
-	public void addRestoran( @RequestParam String name, 
-			@RequestParam String description, @RequestParam String adress, @RequestParam String imgUrl, @RequestParam String phone) {
+	public void addRestoranAlt( 
+			@RequestParam String name, 
+			@RequestParam String description,
+			@RequestParam String adress,
+			@RequestParam String imgUrl,
+			@RequestParam String phone) {
 		
-		Restoran restoran = new Restoran();
-		restoran.setName(name);
+		Restoran restoran = new Restoran(null, name, description, adress, imgUrl, phone);
+		/*restoran.setName(name);
 		restoran.setDescription(description);
 		restoran.setAdress(adress);
 		restoran.setImgUrl(imgUrl);
-		restoran.setPhone(phone);
+		restoran.setPhone(phone);*/
+		System.out.println(restoran.toString());
+		restoranRepository.save(restoran);
+	}
+	
+	public void addRestoran(RestoranModel restoranModel) {
+		System.out.println("IN SERVICE: \n" + restoranModel.toString());
+		Restoran restoran = new Restoran(
+				null,
+				restoranModel.getName(),
+				restoranModel.getDescription(),
+				restoranModel.getAdress(),
+				restoranModel.getImgUrl(),
+				restoranModel.getPhone());
+		System.out.println(restoran.toString());
+		/*restoran.setName(restoranModel.getName());
+		restoran.setDescription(restoranModel.getDescription());
+		restoran.setAdress(restoranModel.getAdress());
+		restoran.setImgUrl(restoranModel.getImgUrl());
+		restoran.setPhone(restoranModel.getPhone());*/
 		
 		restoranRepository.save(restoran);
 	}

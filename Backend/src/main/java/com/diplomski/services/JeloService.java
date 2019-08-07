@@ -70,5 +70,14 @@ public class JeloService {
 		
 		return new JeloModel(jelo.getName(), jelo.getDescription(), jelo.getPrice(), jelo.getImgUrl(), restoranName, sastojci, hranljivosti);
 	}
+	
+	public JeloModel getJelo(String jeloName) {
+		
+		Jelo jelo = jeloRepository.findOneByName(jeloName);
+		JeloModel jeloModel = constructJelo(jelo);
+		
+		return jeloModel;
+		
+	}
 
 }

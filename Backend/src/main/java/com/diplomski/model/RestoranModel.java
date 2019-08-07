@@ -56,5 +56,10 @@ public class RestoranModel {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	@Override
+	public String toString() {
+		return "Restoran MODEL: " + this.name + ", " + this.description + ", " + this.adress + ", " + this.imgUrl + ", " + this.phone;
+	}
 
 }

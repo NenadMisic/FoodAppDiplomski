@@ -43,6 +43,13 @@ public class JeloController {
 		return jeloService.getJelaForRestoran(restoranNameFix);
 	}
 	
+	@GetMapping(path="restorani/{restoran}/{jelo}")
+	public JeloModel getJelo(@PathVariable("jelo") String jeloName) {
+		
+		return jeloService.getJelo(jeloName);
+		
+	}
+	
 	@PostMapping(path="/restorani/{restoran}/addJelo")
 	public void addNewJelo (@RequestParam String name, 
 			@RequestParam String description, @RequestParam Integer price, @RequestParam String imgUrl, @RequestParam Integer restoranId,

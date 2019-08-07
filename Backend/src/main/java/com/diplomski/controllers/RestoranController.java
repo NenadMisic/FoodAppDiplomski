@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +28,29 @@ public class RestoranController {
 	@Autowired
 	private JeloService jeloService;
 	
-	@PostMapping(path="/restorani/add")
-	public void addNewRestoran (@RequestParam String name, 
-			@RequestParam String description, @RequestParam String adress, @RequestParam String imgUrl, @RequestParam String phone) {
+	@PostMapping(path="/restorani/addalt")
+	public void addNewRestoranAlt (
+			@RequestParam(required=false, value = "name") String name, 
+			@RequestParam(required=false, value = "description") String description,
+			@RequestParam(required=false, value = "adress") String adress,
+			@RequestParam(required=false, value = "imgUrl") String imgUrl,
+			@RequestParam(required=false, value = "phone") String phone) {
 		
-		restoranService.addRestoran(name, description, adress, imgUrl, phone);
+		System.out.println(adress);
+		
+		restoranService.addRestoranAlt(name, description, adress, imgUrl, phone);
+	}
+	
+	@PostMapping(path="/restorani/add")
+	public void addNewRestoran (@RequestBody RestoranModel restoran) {
+		
+		System.out.println("IN CONTROLLER: \n" + restoran.toString());
+		
+		RestoranModel restoranModel = restoran;
+		
+		System.out.println("IN CONTROLLER: \n" + restoranModel.toString());
+		
+		restoranService.addRestoran(restoranModel);
 	}
 	
 	@GetMapping(path="/restorani/all")
