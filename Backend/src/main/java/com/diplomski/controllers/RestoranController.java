@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.diplomski.entities.Restoran;
@@ -28,45 +27,20 @@ public class RestoranController {
 	@Autowired
 	private JeloService jeloService;
 	
-	@PostMapping(path="/restorani/addalt")
-	public void addNewRestoranAlt (
-			@RequestParam(required=false, value = "name") String name, 
-			@RequestParam(required=false, value = "description") String description,
-			@RequestParam(required=false, value = "adress") String adress,
-			@RequestParam(required=false, value = "imgUrl") String imgUrl,
-			@RequestParam(required=false, value = "phone") String phone) {
-		
-		System.out.println(adress);
-		
-		restoranService.addRestoranAlt(name, description, adress, imgUrl, phone);
-	}
-	
-	@PostMapping(path="/restorani/add")
-	public void addNewRestoran (@RequestBody RestoranModel restoran) {
-		
-		System.out.println("IN CONTROLLER: \n" + restoran.toString());
-		
-		RestoranModel restoranModel = restoran;
-		
-		System.out.println("IN CONTROLLER: \n" + restoranModel.toString());
-		
-		restoranService.addRestoran(restoranModel);
-	}
-	
 	@GetMapping(path="/restorani/all")
 	public ArrayList<RestoranModel> getAllRestorani() {
 	
 		return restoranService.getAllRestorani(); 
 	}
 	
-	@GetMapping(path="/restorani/{imeRestorana}")
-	public Restoran getRestoran( @PathVariable("imeRestorana") String restoranName) {
+	@GetMapping(path="/restorani/{restoranName}")
+	public Restoran getRestoran( @PathVariable("restoranName") String restoranName) {
 		String restoranNameFix = restoranName.replace("_", " ");
 		return restoranService.getRestoranByName(restoranNameFix);
 	}
 	
-	@GetMapping(path="/restorani/{imeRestorana}/full")
-	public FullRestoranModel getRestoranWithMenu( @PathVariable("imeRestorana") String restoranName) {
+	@GetMapping(path="/restorani/{restoranName}/full")
+	public FullRestoranModel getRestoranWithMenu( @PathVariable("restoranName") String restoranName) {
 		String restoranNameFix = restoranName.replace("_", " ");
 		FullRestoranModel frm;
 		
@@ -78,13 +52,18 @@ public class RestoranController {
 		return frm;
 	}
 	
-	@PutMapping(path="/restorani/update/{imeRestorana}")
-	public void updateRestoran(@PathVariable("imeRestorana") Restoran restoran) {
-		restoranService.updateRestoran(restoran);
+	@PostMapping(path="/restorani/add")
+	public void addNewRestoran (@RequestBody RestoranModel restoran) {
+		restoranService.addRestoran(restoran);
 	}
 	
-	@DeleteMapping(path="/restorani/delete/{imeRestorana}")
-	public void deleteRestoran(@PathVariable("imeRestorana") Restoran restoran) {
-		restoranService.deleteRestoran(restoran);
+	@PutMapping(path="/restorani/update/{restoranName}")
+	public void updateRestoran(@PathVariable("restoranName") String restoranName, @RequestBody RestoranModel restoran) {
+		restoranService.updateRestoran(restoranName, restoran);
+	}
+	
+	@DeleteMapping(path="/restorani/delete/{restoranName}")
+	public void deleteRestoran(@PathVariable("restoranName") String restoranName) {
+		restoranService.deleteRestoran(restoranName);
 	}
 }

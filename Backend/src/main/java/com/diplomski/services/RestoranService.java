@@ -16,42 +16,6 @@ public class RestoranService {
 	@Autowired
 	private RestoranRepository restoranRepository;
 	
-	public void addRestoranAlt( 
-			@RequestParam String name, 
-			@RequestParam String description,
-			@RequestParam String adress,
-			@RequestParam String imgUrl,
-			@RequestParam String phone) {
-		
-		Restoran restoran = new Restoran(null, name, description, adress, imgUrl, phone);
-		/*restoran.setName(name);
-		restoran.setDescription(description);
-		restoran.setAdress(adress);
-		restoran.setImgUrl(imgUrl);
-		restoran.setPhone(phone);*/
-		System.out.println(restoran.toString());
-		restoranRepository.save(restoran);
-	}
-	
-	public void addRestoran(RestoranModel restoranModel) {
-		System.out.println("IN SERVICE: \n" + restoranModel.toString());
-		Restoran restoran = new Restoran(
-				null,
-				restoranModel.getName(),
-				restoranModel.getDescription(),
-				restoranModel.getAdress(),
-				restoranModel.getImgUrl(),
-				restoranModel.getPhone());
-		System.out.println(restoran.toString());
-		/*restoran.setName(restoranModel.getName());
-		restoran.setDescription(restoranModel.getDescription());
-		restoran.setAdress(restoranModel.getAdress());
-		restoran.setImgUrl(restoranModel.getImgUrl());
-		restoran.setPhone(restoranModel.getPhone());*/
-		
-		restoranRepository.save(restoran);
-	}
-	
 	public ArrayList<RestoranModel> getAllRestorani() {
 		ArrayList<RestoranModel> restorani = new ArrayList<>();
 		
@@ -62,11 +26,7 @@ public class RestoranService {
 	}
 	
 	public Restoran getRestoranByName(@RequestParam String restoranName) {
-		System.out.println("RestoranService Name: ");
-		System.out.println(restoranName);
 		Restoran restoran =  restoranRepository.findOneByName(restoranName);
-		System.out.println("RestoranService Restoran Id: ");
-		System.out.println(restoran.getRestoranId());
 		return restoran;
 	}
 	
@@ -78,11 +38,34 @@ public class RestoranService {
 		return null;
 	}
 	
-	public void updateRestoran(@RequestParam Restoran restoran) {
+	public void addRestoran(RestoranModel restoranModel) {
+		Restoran restoran = new Restoran(
+				null,
+				restoranModel.getName(),
+				restoranModel.getDescription(),
+				restoranModel.getAdress(),
+				restoranModel.getImgUrl(),
+				restoranModel.getPhone());
+		
+		restoranRepository.save(restoran);
+	}
+	
+	public void updateRestoran(@RequestParam String restoranName, @RequestParam RestoranModel restoranModel) {
+		
+		Restoran r = restoranRepository.findOneByName(restoranName);
+		
+		Restoran restoran = new Restoran(
+				r.getRestoranId(),
+				restoranModel.getName() == null || restoranModel.getName() == "" ? r.getName() : restoranModel.getName(),
+				restoranModel.getDescription() == null || restoranModel.getDescription() == "" ? r.getDescription() : restoranModel.getDescription(),
+				restoranModel.getAdress() == null || restoranModel.getAdress() == "" ? r.getAdress() : restoranModel.getAdress(),
+				restoranModel.getImgUrl() == null || restoranModel.getImgUrl() == "" ? r.getImgUrl() : restoranModel.getImgUrl(),
+				restoranModel.getPhone() == null || restoranModel.getPhone() == "" ? r.getPhone() : restoranModel.getPhone());
+		
 		restoranRepository.save(restoran);
 	}
 
-	public void deleteRestoran(@RequestParam Restoran restoran) {
-		restoranRepository.delete(restoran);
+	public void deleteRestoran(@RequestParam String restoranName) {
+		restoranRepository.deleteOneByName(restoranName);
 	}
 }
