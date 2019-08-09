@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.diplomski.entities.HranljivaVrednost;
 import com.diplomski.entities.HranljivostiZaJelo;
+import com.diplomski.entities.Sastojak;
+import com.diplomski.entities.SastojciZaJelo;
+import com.diplomski.model.FullNutritionModel;
 import com.diplomski.model.HranljivostModel;
 import com.diplomski.repositories.HranVredRepository;
 import com.diplomski.repositories.HranljivostiZaJeloRepository;
@@ -49,6 +52,29 @@ public class HranVredService {
 		return hranVrednosti;
 	}
 	
-	
-
+	public void addNutrition(ArrayList<HranljivostModel> hrvrModelArr, Integer jeloId) {
+		ArrayList<FullNutritionModel> notExisting = new ArrayList<>(); 
+		ArrayList<FullNutritionModel> existing = new ArrayList<>(); 
+		for (HranljivostModel hrvrModel : hrvrModelArr) {
+			Integer hrvrId = hranVredRepository.getIdByName(hrvrModel.getName());
+			if(hrvrId != null && hrvrId > 0) {
+				existing.add(new FullNutritionModel(hrvrId, hrvrModel));
+			} else {
+				notExisting.add(new FullNutritionModel(hrvrId, hrvrModel));
+			}
+		}
+		System.out.println("Not Existing");
+		for (FullNutritionModel hrvr : notExisting) {
+			System.out.println(hrvr.toString());
+			hranVredRepository.save(new HranljivaVrednost(hrvr.getNutritionName(), hrvr.getNutritionValueUnit()));
+			Integer hrvrId = hranVredRepository.getIdByName(hrvr.getNutritionName());
+			hranljivostiZaJeloRepository.save(new HranljivostiZaJelo(jeloId, hrvrId, hrvr.getNutritionValue()));
+		}
+		System.out.println("Existing");
+		for (FullNutritionModel hrvr : existing) {
+			System.out.println(hrvr.toString());
+			Integer hrvrId = hranVredRepository.getIdByName(hrvr.getNutritionName());
+			hranljivostiZaJeloRepository.save(new HranljivostiZaJelo(jeloId, hrvrId, hrvr.getNutritionValue()));
+		}
+	}
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.diplomski.entities.Jelo;
-import com.diplomski.entities.Restoran;
 import com.diplomski.model.HranljivostModel;
 import com.diplomski.model.JeloModel;
 import com.diplomski.model.SastojakModel;
@@ -27,10 +26,6 @@ public class JeloService {
 	@Autowired
 	private SastojakService sastojakService;
 	
-	public void addJelo(Jelo jelo) {
-		jeloRepository.save(jelo);
-	}
-	
 	public ArrayList<JeloModel> getAllJela() {
 		
 		ArrayList<JeloModel> jela = new ArrayList<>();
@@ -46,10 +41,7 @@ public class JeloService {
 	public ArrayList<JeloModel> getJelaForRestoran(String restoranName) {
 		
 		ArrayList<JeloModel> jela = new ArrayList<>();
-		Restoran restorann = restoranService.getRestoranByName(restoranName);
-		System.out.println("JeloService: ");
-		System.out.println(restorann.getRestoranId());
-		Integer restoranId = restoranService.getRestoranByName(restoranName).getRestoranId();
+		Integer restoranId = restoranService.getRestoranIdByName(restoranName);
 		
 		if(restoranId != null) {
 			jeloRepository.findAllByRestoranId(restoranId).forEach(jelo -> {
@@ -62,7 +54,7 @@ public class JeloService {
 	}
 	
 	private JeloModel constructJelo(Jelo jelo) {
-		
+			
 		String restoranName = restoranService.getRestoranById(jelo.getRestoranId()).getName();
 		
 		ArrayList<SastojakModel> sastojci = sastojakService.findAllForFood(jelo.getJeloId());
@@ -79,5 +71,20 @@ public class JeloService {
 		return jeloModel;
 		
 	}
-
+	
+	public void addJelo(String restoranName, JeloModel jeloModel) {
+		String restoranNameFix = restoranName.replace("_", " ");
+		Integer restoranId = restoranService.getRestoranIdByName(restoranNameFix);
+		Jelo jelo = new Jelo(
+				jeloModel.getName(),
+				jeloModel.getDescription(),
+				jeloModel.getPrice(),
+				jeloModel.getImgUrl(),
+				restoranId
+				);
+		jeloRepository.save(jelo);
+		Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName());
+		hranVredService.addNutrition(jeloModel.getNutritions(), jeloId);
+		sastojakService.addIngredients(jeloModel.getIngredients(), jeloId);
+	}
 }

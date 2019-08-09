@@ -16,7 +16,7 @@ public class Jelo {
 	@Column(name="jelo_id")
     private Integer jeloId;
 
-	@Column(name="ime_jela")
+	@Column(name="ime_jela", unique=true)
 	private String name;
 
 	@Column(name="opis_jela")
@@ -30,6 +30,16 @@ public class Jelo {
 
     @Column(name="restoran_id")
     private Integer restoranId;
+    
+    public Jelo() {}
+    public Jelo(String name, String description, Integer price, String imgUrl, Integer restoranId) {
+    	this.restoranId = null;
+    	this.name = name;
+    	this.description = description;
+    	this.price = price;
+    	this.imgUrl = imgUrl;
+    	this.restoranId = restoranId;
+    }
 
     public Integer getJeloId() {
 		return jeloId;

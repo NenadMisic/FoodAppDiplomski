@@ -38,6 +38,11 @@ public class RestoranService {
 		return null;
 	}
 	
+	public Integer getRestoranIdByName(@RequestParam String name) {
+		Integer restoranId = restoranRepository.getRestoranIdByName(name);
+		return restoranId;
+	}
+	
 	public void addRestoran(RestoranModel restoranModel) {
 		Restoran restoran = new Restoran(
 				null,

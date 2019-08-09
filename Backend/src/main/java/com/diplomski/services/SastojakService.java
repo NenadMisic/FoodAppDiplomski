@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.diplomski.entities.Sastojak;
 import com.diplomski.entities.SastojciZaJelo;
+import com.diplomski.model.FullIngredientModel;
 import com.diplomski.model.SastojakModel;
 import com.diplomski.repositories.SastojakRepository;
 import com.diplomski.repositories.SastojciZaJeloRepository;
@@ -19,13 +20,6 @@ public class SastojakService {
 	
 	@Autowired
 	private SastojciZaJeloRepository sastojciZaJeloRepository;
-	
-	public void addSastojke(ArrayList<Sastojak> sastojci)  {
-		
-		sastojci.forEach(sastojak -> {
-			sastojakRepository.save(sastojak);
-		});	
-	}
 	
 	private ArrayList<SastojciZaJelo> findSastojkeForFood(Integer jeloId) {
 		
@@ -52,5 +46,31 @@ public class SastojakService {
 		});
 		System.out.println("Do ovde radi SastojakService -> 51");
 		return sastojci;
+	}
+	
+	public void addIngredients(ArrayList<SastojakModel> sastojci, Integer jeloId)  {
+		ArrayList<FullIngredientModel> notExisting = new ArrayList<>(); 
+		ArrayList<FullIngredientModel> existing = new ArrayList<>();
+		for (SastojakModel sm : sastojci) {
+			Integer sastojakId = sastojakRepository.getIdByName(sm.getName());
+			if(sastojakId != null && sastojakId > 0) {
+				existing.add(new FullIngredientModel(sastojakId, sm));
+			} else {
+				notExisting.add(new FullIngredientModel(sastojakId, sm));
+			}
+		}
+		System.out.println("Not Existing");
+		for (FullIngredientModel sm : notExisting) {
+			System.out.println(sm.toString());
+			sastojakRepository.save(new Sastojak(sm.getIngredientName(), sm.getIngredientAmountUnit()));
+			Integer sastojakId = sastojakRepository.getIdByName(sm.getIngredientName());
+			sastojciZaJeloRepository.save(new SastojciZaJelo(jeloId, sastojakId, sm.getIngredientAmount()));
+		}
+		System.out.println("Existing");
+		for (FullIngredientModel sm : existing) {
+			System.out.println(sm.toString());
+			Integer sastojakId = sastojakRepository.getIdByName(sm.getIngredientName());
+			sastojciZaJeloRepository.save(new SastojciZaJelo(jeloId, sastojakId, sm.getIngredientAmount()));
+		}
 	}
 }

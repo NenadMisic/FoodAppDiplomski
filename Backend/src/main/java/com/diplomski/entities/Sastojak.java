@@ -22,6 +22,13 @@ public class Sastojak {
 	@Column(name="jedinica_mere")
 	private String unit;
 	
+	public Sastojak(String name, String unit) {
+
+		this.sastojakId = null;
+		this.name = name;
+		this.unit = unit;
+	}
+
 	public Integer getSastojakId() {
 		return sastojakId;
 	}

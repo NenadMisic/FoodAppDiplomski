@@ -50,7 +50,7 @@ public class JeloController {
 		
 	}
 	
-	@PostMapping(path="/restorani/{restoran}/addJelo")
+	/*@PostMapping(path="/restorani/{restoran}/addJelo")
 	public void addNewJelo (@RequestParam String name, 
 			@RequestParam String description, @RequestParam Integer price, @RequestParam String imgUrl, @RequestParam Integer restoranId,
 			@RequestParam ArrayList<Sastojak> sastojci, @RequestParam ArrayList<HranljivaVrednost> hranVred ) {
@@ -69,6 +69,6 @@ public class JeloController {
 		
 		hranVredService.addHranVrednosti(hranVred);
 		
-	}
+	}*/
 	
 }

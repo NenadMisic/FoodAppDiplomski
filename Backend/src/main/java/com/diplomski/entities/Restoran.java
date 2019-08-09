@@ -16,7 +16,7 @@ public class Restoran {
 	@Column(name="restoran_id")
     private Integer restoranId;
 
-	@Column(name="ime_restorana")
+	@Column(name="ime_restorana", unique=true)
 	private String name;
     
 	@Column(name="opis_restorana")

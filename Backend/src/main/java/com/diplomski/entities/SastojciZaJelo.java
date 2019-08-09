@@ -23,8 +23,15 @@ public class SastojciZaJelo {
 	private Integer sastojakId;
 	
 	@Column(name="kolicina")
-	private int kolicina;
+	private Integer kolicina;
 	
+	public SastojciZaJelo(Integer jeloId, Integer sastojakId, Integer kolicina) {
+		this.id = null;
+		this.jeloId = jeloId;
+		this.sastojakId = sastojakId;
+		this.kolicina = kolicina;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -45,7 +52,7 @@ public class SastojciZaJelo {
 		this.sastojakId = sastojakId;
 	}
 
-	public int getKolicina() {
+	public Integer getKolicina() {
 		return kolicina;
 	}
 

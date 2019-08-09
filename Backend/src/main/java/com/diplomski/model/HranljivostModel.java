@@ -36,4 +36,9 @@ public class HranljivostModel {
 		this.unit = unit;
 	}
 	
+	@Override
+	public String toString() {
+		return "Name: " + this.name + ", " + "Value: " + this.value;
+	}
+	
 }

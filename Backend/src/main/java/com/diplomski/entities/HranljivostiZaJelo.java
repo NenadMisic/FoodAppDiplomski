@@ -17,31 +17,38 @@ public class HranljivostiZaJelo {
 	private Integer id;
 	
 	@Column(name="jelo_id")
-	private int jeloId;
+	private Integer jeloId;
 	
 	@Column(name="hranljivost_id")
-	private int hranljivostId;
+	private Integer hranljivostId;
 	
 	@Column(name="vrednost")
-	private int vrednost;
+	private Integer vrednost;
+
+	public HranljivostiZaJelo(Integer jeloId, Integer hranljivostId, Integer vrednost) {
+		this.id = null;
+		this.jeloId = jeloId;
+		this.hranljivostId = hranljivostId;
+		this.vrednost = vrednost;
+	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public int getJeloId() {
+	public Integer getJeloId() {
 		return jeloId;
 	}
 
-	public void setJeloId(int jeloId) {
+	public void setJeloId(Integer jeloId) {
 		this.jeloId = jeloId;
 	}
 
-	public int getHranljivostId() {
+	public Integer getHranljivostId() {
 		return hranljivostId;
 	}
 
-	public void setHranljivostId(int hranljivostId) {
+	public void setHranljivostId(Integer hranljivostId) {
 		this.hranljivostId = hranljivostId;
 	}
 

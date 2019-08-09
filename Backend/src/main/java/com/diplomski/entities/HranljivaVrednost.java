@@ -21,6 +21,12 @@ public class HranljivaVrednost {
 	
 	@Column(name="jedinica_mere")
 	private String jedinicaMere;
+	
+	public HranljivaVrednost(String naziv, String jedinicaMere) {
+		this.hranljivostId = null;
+		this.naziv = naziv;
+		this.jedinicaMere = jedinicaMere;
+	}
 
 	public Integer getHranljivostId() {
 		return hranljivostId;
@@ -40,6 +46,11 @@ public class HranljivaVrednost {
 
 	public void setJedinicaMere(String jedinicaMere) {
 		this.jedinicaMere = jedinicaMere;
+	}
+	
+	@Override
+	public String toString() {
+		return "Naziv: " + this.naziv;
 	}
 	
 }

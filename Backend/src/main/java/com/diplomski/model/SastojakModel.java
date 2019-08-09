@@ -36,5 +36,8 @@ public class SastojakModel {
 		this.unit = unit;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Sastojak: " + this.name + " " + this.amount + " " + this.unit;
+	}
 }
