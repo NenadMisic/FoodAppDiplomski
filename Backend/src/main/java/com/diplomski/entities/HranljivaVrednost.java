@@ -28,6 +28,8 @@ public class HranljivaVrednost {
 		this.jedinicaMere = jedinicaMere;
 	}
 
+	public HranljivaVrednost() {}
+	
 	public Integer getHranljivostId() {
 		return hranljivostId;
 	}

@@ -31,6 +31,8 @@ public class SastojciZaJelo {
 		this.sastojakId = sastojakId;
 		this.kolicina = kolicina;
 	}
+	
+	public SastojciZaJelo() {}
 
 	public Integer getId() {
 		return id;

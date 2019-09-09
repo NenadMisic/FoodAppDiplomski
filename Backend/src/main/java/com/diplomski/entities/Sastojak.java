@@ -28,6 +28,8 @@ public class Sastojak {
 		this.name = name;
 		this.unit = unit;
 	}
+	
+	public Sastojak() {}
 
 	public Integer getSastojakId() {
 		return sastojakId;

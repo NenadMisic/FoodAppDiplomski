@@ -41,7 +41,6 @@ public class Restoran {
 		this.phone = phone;
 	}
 
-
     public Integer getRestoranId() {
 		return restoranId;
 	}

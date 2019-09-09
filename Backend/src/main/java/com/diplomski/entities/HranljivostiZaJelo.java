@@ -31,6 +31,8 @@ public class HranljivostiZaJelo {
 		this.hranljivostId = hranljivostId;
 		this.vrednost = vrednost;
 	}
+	
+	public HranljivostiZaJelo() {}
 
 	public Integer getId() {
 		return id;
