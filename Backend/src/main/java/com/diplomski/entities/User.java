@@ -28,8 +28,7 @@ public class User {
 	@Column(name="is_admin")
     private Integer isAdmin;
 	
-	public User(Integer id, String email, String password, String username, Integer isAdmin) {
-		this.id = id;
+	public User(String email, String password, String username, Integer isAdmin) {
 		this.email = email;
 		this.password = password;
 		this.username = username;

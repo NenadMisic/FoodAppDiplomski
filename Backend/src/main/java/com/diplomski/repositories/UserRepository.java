@@ -7,5 +7,5 @@ import com.diplomski.entities.User;
 public interface UserRepository extends CrudRepository<User, Integer> {
 
 	public User findOneByUsername(String username);
-	
+	public User findOneByEmail(String email);
 }
