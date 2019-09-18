@@ -47,7 +47,7 @@ public class AuthController {
 		return um;
 	}
 	
-	@PostMapping(path="auth/register")
+	@PostMapping(path="/auth/register")
 	public UserModel registerUser(@RequestBody RegisterModel registerModel) throws Exception {
 		
 		UserModel um = authService.registerUser(registerModel.getEmail(), registerModel.getUsername(), registerModel.getPassword());
