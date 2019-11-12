@@ -65,7 +65,7 @@ public class AuthService {
 	
 	public UserModel registerUser(String email, String username, String password) throws Exception {
 		try {
-			userRepository.save(new User(email, username, password, 0));
+			userRepository.save(new User(email, password, username, 0));
 		} catch(Exception e) {
 			String exception = e.getMessage();
 			if(exception.contains("email")) {
