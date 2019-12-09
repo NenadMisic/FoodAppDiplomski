@@ -73,4 +73,8 @@ public class SastojakService {
 			sastojciZaJeloRepository.save(new SastojciZaJelo(jeloId, sastojakId, sm.getIngredientAmount()));
 		}
 	}
+	
+	public void deleteAllIngredients(Integer jeloId) {
+		sastojciZaJeloRepository.deleteAllByJeloId(jeloId);
+	}
 }

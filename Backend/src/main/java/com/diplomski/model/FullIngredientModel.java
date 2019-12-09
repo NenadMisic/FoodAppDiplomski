@@ -21,6 +21,7 @@ public class FullIngredientModel {
 		this.ingredientAmount = sastojak.getAmount();
 		this.ingredientAmountUnit = sastojak.getUnit();
 	}
+	public FullIngredientModel() {}
 
 	public Integer getIngredientId() {
 		return ingredientId;

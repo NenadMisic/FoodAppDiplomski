@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.diplomski.entities.HranljivaVrednost;
 import com.diplomski.entities.HranljivostiZaJelo;
-import com.diplomski.entities.Sastojak;
-import com.diplomski.entities.SastojciZaJelo;
 import com.diplomski.model.FullNutritionModel;
 import com.diplomski.model.HranljivostModel;
 import com.diplomski.repositories.HranVredRepository;
@@ -76,5 +74,9 @@ public class HranVredService {
 			Integer hrvrId = hranVredRepository.getIdByName(hrvr.getNutritionName());
 			hranljivostiZaJeloRepository.save(new HranljivostiZaJelo(jeloId, hrvrId, hrvr.getNutritionValue()));
 		}
+	}
+	
+	public void deleteAllNutitions(Integer jeloId) {
+		hranljivostiZaJeloRepository.deleteAllByJeloId(jeloId);
 	}
 }

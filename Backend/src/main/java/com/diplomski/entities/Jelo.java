@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Jelo {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="jelo_id")
     private Integer jeloId;
 
@@ -32,8 +32,17 @@ public class Jelo {
     private Integer restoranId;
     
     public Jelo() {}
+    
+    public Jelo(Integer jeloId ,String name, String description, Integer price, String imgUrl, Integer restoranId) {
+    	this.jeloId = jeloId;
+    	this.name = name;
+    	this.description = description;
+    	this.price = price;
+    	this.imgUrl = imgUrl;
+    	this.restoranId = restoranId;
+    }
+    
     public Jelo(String name, String description, Integer price, String imgUrl, Integer restoranId) {
-    	this.restoranId = null;
     	this.name = name;
     	this.description = description;
     	this.price = price;

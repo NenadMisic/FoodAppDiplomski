@@ -12,7 +12,7 @@ public interface JeloRepository extends CrudRepository<Jelo, Integer> {
 	
 	public Jelo findOneByName(String name);
 	
-	@Query(value = "SELECT j.restoranId FROM Jelo j WHERE j.name = :name")
-	public Integer getJeloIdByName(@Param("name") String name);
+	@Query(value = "SELECT j.jeloId FROM Jelo j WHERE j.name =:name and j.restoranId =:restoranId")
+	public Integer getJeloIdByName(@Param("name") String name1, @Param("restoranId") Integer restoranId1);
 
 }

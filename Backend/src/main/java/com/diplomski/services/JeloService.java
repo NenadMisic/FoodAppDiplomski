@@ -83,8 +83,36 @@ public class JeloService {
 				restoranId
 				);
 		jeloRepository.save(jelo);
-		Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName());
-		hranVredService.addNutrition(jeloModel.getNutritions(), jeloId);
-		sastojakService.addIngredients(jeloModel.getIngredients(), jeloId);
+		Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName(), restoranId);
+		hranVredService.addNutrition(jeloModel.getHranVrednosti(), jeloId);
+		sastojakService.addIngredients(jeloModel.getSastojci(), jeloId);
+	}
+	
+	public void updateJelo(String restoranName, JeloModel jeloModel) {
+		String restoranNameFix = restoranName.replace("_", " ");
+		Integer restoranId = restoranService.getRestoranIdByName(restoranNameFix);
+		Jelo j = jeloRepository.findOneByName(jeloModel.getName());
+		Jelo jelo = new Jelo(
+				j.getJeloId(),
+				jeloModel.getName(),
+				jeloModel.getDescription(),
+				jeloModel.getPrice(),
+				jeloModel.getImgUrl(),
+				restoranId
+				);
+		jeloRepository.save(jelo);
+		
+	}
+	
+	public void deleteJelo(String restoranName, String jeloName) {
+		String restoranNameFix = restoranName.replace("_", " ");
+		String jeloNameFix = jeloName.replace("_", " ");
+		System.out.println(restoranNameFix + " " + jeloNameFix);
+		Integer restoranId = restoranService.getRestoranIdByName(restoranNameFix);
+		Integer jeloId = jeloRepository.getJeloIdByName(jeloNameFix, restoranId);
+		System.out.println(restoranId + " " + jeloId);
+		jeloRepository.deleteById(jeloId);
+		sastojakService.deleteAllIngredients(jeloId);
+		hranVredService.deleteAllNutitions(jeloId);
 	}
 }

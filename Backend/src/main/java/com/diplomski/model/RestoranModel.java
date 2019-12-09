@@ -16,6 +16,7 @@ public class RestoranModel {
     	this.imgUrl = imgUrl;
     	this.phone = phone;
     }
+    public RestoranModel() {}
 
 	public String getName() {
 		return name;

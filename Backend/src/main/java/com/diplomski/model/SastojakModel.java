@@ -11,6 +11,7 @@ public class SastojakModel {
 		this.amount = amount;
 		this.unit = unit;
 	}
+	public SastojakModel() {}
 
 	public String getName() {
 		return name;

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class HranljivaVrednost {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="hranljivost_id")
 	private Integer hranljivostId;
 	

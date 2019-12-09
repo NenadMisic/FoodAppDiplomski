@@ -7,12 +7,11 @@ public class UserModel {
 	private Integer admin;
 	
 	public UserModel(String email, String username, Integer admin) {
-		
 		this.email = email;
 		this.username = username;
 		this.admin = admin;
-		
 	}
+	public UserModel() {}
 	
 	public String getEmail() {
 		return email;

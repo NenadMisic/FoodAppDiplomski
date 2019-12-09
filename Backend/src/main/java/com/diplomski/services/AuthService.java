@@ -1,5 +1,7 @@
 package com.diplomski.services;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ public class AuthService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	private UserModel loggedUser = null;
 	
 	public UserModel getUserByUsername(String username) {
 		
@@ -45,12 +49,21 @@ public class AuthService {
 		
 	}
 	
+	public UserModel hasLogedUser() {
+		if (this.loggedUser != null) {
+			return this.loggedUser;
+		} else {
+			return null;
+		}
+	}
+	
 	public UserModel loginUser(String email, String password) throws Exception {
 		User user = userRepository.findOneByEmail(email);
 		if (user != null) {
 			try {
 				if (user.getPassword().equals(password)) {
 					UserModel userModel = new UserModel(user.getEmail(), user.getUsername(), user.getIsAdmin());
+					this.loggedUser = new UserModel(user.getEmail(), user.getUsername(), user.getIsAdmin());
 					return userModel;
 				} else {
 					throw new Exception("Wrong password");
@@ -81,6 +94,10 @@ public class AuthService {
 		User user1 = userRepository.findOneByEmail(email);
 		UserModel userModel = new UserModel(user1.getEmail(), user1.getUsername(), user1.getIsAdmin());
 		return userModel; 
+	}
+	
+	public void logout() {
+		this.loggedUser = null;
 	}
 	
 }

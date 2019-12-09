@@ -41,6 +41,12 @@ public class AuthController {
 		
 	}
 	
+	
+	@GetMapping(path="/loged")
+	public UserModel hasLogedUser() {
+		return authService.hasLogedUser();
+	}
+	
 	@PostMapping(path="/auth/login")
 	public UserModel loginUser(@RequestBody LoginModel loginModel) throws Exception {
 		UserModel um = authService.loginUser(loginModel.getEmail(), loginModel.getPassword());
@@ -54,6 +60,11 @@ public class AuthController {
 		
 		return um;
 		
+	}
+	
+	@PostMapping(path="auth/logout")
+	public void logout() {
+		this.authService.logout();
 	}
 	
 }

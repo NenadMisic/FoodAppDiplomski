@@ -15,6 +15,7 @@ public class JeloModel {
     private ArrayList<SastojakModel> sastojci;
     private ArrayList<HranljivostModel> hranVrednosti;
     
+    public JeloModel() {}
     public JeloModel(
     		String name,
     		String description,
@@ -76,7 +77,7 @@ public class JeloModel {
 		this.sastojci = sastojci;
 	}
 	
-	public ArrayList<SastojakModel> getIngredients() {
+	public ArrayList<SastojakModel> getSastojci() {
 		return this.sastojci;
 	}
 	
@@ -93,11 +94,11 @@ public class JeloModel {
 		this.sastojci.add(sastojak);
 	}
 	
-	public void setHranVred(ArrayList<HranljivostModel> hranVred) {
+	public void setHranVrednosti(ArrayList<HranljivostModel> hranVred) {
 		this.hranVrednosti = hranVred;
 	}
 	
-	public ArrayList<HranljivostModel> getNutritions() {
+	public ArrayList<HranljivostModel> getHranVrednosti() {
 		return this.hranVrednosti;
 	}
 	
@@ -110,7 +111,7 @@ public class JeloModel {
 		return null;
 	}
 	
-	public void addSastojak(HranljivostModel hrvr) {
+	public void addHranljivost(HranljivostModel hrvr) {
 		this.hranVrednosti.add(hrvr);
 	}
 	

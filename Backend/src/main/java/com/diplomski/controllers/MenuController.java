@@ -38,11 +38,8 @@ public class MenuController {
 		return frm;
 	}
 	
-	@PostMapping(path="/restorani/{restoranName}/add")
-	public void addJelo(@PathVariable("restoranName") String restoranName, @RequestBody JeloModel jeloModel) {
-
-		jeloService.addJelo(restoranName, jeloModel);
-		
-	}
+	// TODO Ubaciti pojedinacno sastojak, nutritivnu vrednost
+	// TODO Update pojedinacnog sastojka, nutritivne vrednosti
+	// TODO DELETE
 
 }
