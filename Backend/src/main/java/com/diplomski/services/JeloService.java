@@ -82,10 +82,10 @@ public class JeloService {
 				jeloModel.getImgUrl(),
 				restoranId
 				);
-		jeloRepository.save(jelo);
-		Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName(), restoranId);
-		hranVredService.addNutrition(jeloModel.getHranVrednosti(), jeloId);
-		sastojakService.addIngredients(jeloModel.getSastojci(), jeloId);
+		if (jelo != null) {
+			jeloRepository.save(jelo);
+			System.out.println("Uspesno dodato jelo");
+		}
 	}
 	
 	public void updateJelo(String restoranName, JeloModel jeloModel) {

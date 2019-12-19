@@ -24,12 +24,9 @@ public class SastojakService {
 	private ArrayList<SastojciZaJelo> findSastojkeForFood(Integer jeloId) {
 		
 		ArrayList<SastojciZaJelo> sastojci = new ArrayList<>();
-		System.out.println("######################################");
 		sastojciZaJeloRepository.findByJeloId(jeloId).forEach(sastojak -> {
-			System.out.println(sastojak.toString());
 			sastojci.add(sastojak);
 		});
-		System.out.println("######################################");
 		return sastojci;
 	}
 	
@@ -38,13 +35,9 @@ public class SastojakService {
 		ArrayList<SastojciZaJelo> sastojciZaJelo = findSastojkeForFood(jeloId);
 		ArrayList<SastojakModel> sastojci = new ArrayList<>();
 		sastojciZaJelo.forEach(sastojakZaJelo -> {
-			System.out.println(sastojakZaJelo.toString());
 			Sastojak sastojak = sastojakRepository.findOneBySastojakId(sastojakZaJelo.getSastojakId());
 			sastojci.add(new SastojakModel(sastojak.getName(), sastojakZaJelo.getKolicina(), sastojak.getUnit()));
-			System.out.println(sastojak.toString());
-			System.out.println("Do ovde radi SastojakService -> 49");
 		});
-		System.out.println("Do ovde radi SastojakService -> 51");
 		return sastojci;
 	}
 	
@@ -59,16 +52,12 @@ public class SastojakService {
 				notExisting.add(new FullIngredientModel(sastojakId, sm));
 			}
 		}
-		System.out.println("Not Existing");
 		for (FullIngredientModel sm : notExisting) {
-			System.out.println(sm.toString());
 			sastojakRepository.save(new Sastojak(sm.getIngredientName(), sm.getIngredientAmountUnit()));
 			Integer sastojakId = sastojakRepository.getIdByName(sm.getIngredientName());
 			sastojciZaJeloRepository.save(new SastojciZaJelo(jeloId, sastojakId, sm.getIngredientAmount()));
 		}
-		System.out.println("Existing");
 		for (FullIngredientModel sm : existing) {
-			System.out.println(sm.toString());
 			Integer sastojakId = sastojakRepository.getIdByName(sm.getIngredientName());
 			sastojciZaJeloRepository.save(new SastojciZaJelo(jeloId, sastojakId, sm.getIngredientAmount()));
 		}

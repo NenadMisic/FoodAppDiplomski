@@ -61,16 +61,12 @@ public class HranVredService {
 				notExisting.add(new FullNutritionModel(hrvrId, hrvrModel));
 			}
 		}
-		System.out.println("Not Existing");
 		for (FullNutritionModel hrvr : notExisting) {
-			System.out.println(hrvr.toString());
 			hranVredRepository.save(new HranljivaVrednost(hrvr.getNutritionName(), hrvr.getNutritionValueUnit()));
 			Integer hrvrId = hranVredRepository.getIdByName(hrvr.getNutritionName());
 			hranljivostiZaJeloRepository.save(new HranljivostiZaJelo(jeloId, hrvrId, hrvr.getNutritionValue()));
 		}
-		System.out.println("Existing");
 		for (FullNutritionModel hrvr : existing) {
-			System.out.println(hrvr.toString());
 			Integer hrvrId = hranVredRepository.getIdByName(hrvr.getNutritionName());
 			hranljivostiZaJeloRepository.save(new HranljivostiZaJelo(jeloId, hrvrId, hrvr.getNutritionValue()));
 		}
