@@ -31,10 +31,14 @@ public class JeloService {
 		ArrayList<JeloModel> jela = new ArrayList<>();
 		
 		jeloRepository.findAll().forEach(jelo -> {
-			JeloModel jeloModel = constructJelo(jelo);
-			jela.add(jeloModel);
+			if (jela.size() < 8) {
+				JeloModel jeloModel = constructJelo(jelo);
+				jela.add(jeloModel);
+			} else {
+				return;
+			}
 		});
-		
+		System.out.println(jela.size());
 		return jela;
 	}
 	
@@ -82,7 +86,9 @@ public class JeloService {
 				jeloModel.getImgUrl(),
 				restoranId
 				);
-		jeloRepository.save(jelo);
+		if (jelo != null) {
+			jeloRepository.save(jelo);
+		}
 		if (jeloModel.getHranVrednosti() == null || jeloModel.getSastojci() == null ) {
 			return;
 		} else {
