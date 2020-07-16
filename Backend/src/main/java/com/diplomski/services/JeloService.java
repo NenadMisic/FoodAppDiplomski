@@ -83,9 +83,13 @@ public class JeloService {
 				restoranId
 				);
 		jeloRepository.save(jelo);
-		Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName(), restoranId);
-		hranVredService.addNutrition(jeloModel.getHranVrednosti(), jeloId);
-		sastojakService.addIngredients(jeloModel.getSastojci(), jeloId);
+		if (jeloModel.getHranVrednosti() == null || jeloModel.getSastojci() == null ) {
+			return;
+		} else {
+			Integer jeloId = jeloRepository.getJeloIdByName(jelo.getName(), restoranId);
+			hranVredService.addNutrition(jeloModel.getHranVrednosti(), jeloId);
+			sastojakService.addIngredients(jeloModel.getSastojci(), jeloId);
+		}
 	}
 	
 	public void updateJelo(String restoranName, JeloModel jeloModel) {
