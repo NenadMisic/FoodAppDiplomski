@@ -4,13 +4,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.diplomski.entities.Sastojak;
+import com.diplomski.entities.Ingredient;
 
-public interface SastojakRepository extends CrudRepository<Sastojak, Integer> {
+public interface IngredientRepository extends CrudRepository<Ingredient, Integer> {
 	
-	public Sastojak findOneBySastojakId(Integer sastojakId);
+	public Ingredient findOneBySastojakId(Integer sastojakId);
 	
-	@Query(value = "SELECT s.sastojakId FROM Sastojak s WHERE s.name = :name")
+	@Query(value = "SELECT s.sastojakId FROM Ingredient s WHERE s.name = :name")
 	public Integer getIdByName(@Param("name") String name);
 
 }

@@ -2,28 +2,28 @@ package com.diplomski.model;
 
 import java.util.ArrayList;
 
-import com.diplomski.model.SastojakModel;
-import com.diplomski.model.HranljivostModel;
+import com.diplomski.model.IngredientModel;
+import com.diplomski.model.NutritionModel;
 
-public class JeloModel {
+public class MealModel {
 
 	private String name;
 	private String description;
     private Integer price;
     private String imgUrl;
     private String restoranName;
-    private ArrayList<SastojakModel> sastojci;
-    private ArrayList<HranljivostModel> hranVrednosti;
+    private ArrayList<IngredientModel> sastojci;
+    private ArrayList<NutritionModel> hranVrednosti;
     
-    public JeloModel() {}
-    public JeloModel(
+    public MealModel() {}
+    public MealModel(
     		String name,
     		String description,
     		Integer price,
     		String imgUrl,
     		String restoranName,
-    		ArrayList<SastojakModel> sastojci,
-    		ArrayList<HranljivostModel> hranVrednosti) {
+    		ArrayList<IngredientModel> sastojci,
+    		ArrayList<NutritionModel> hranVrednosti) {
     	this.name = name;
     	this.description = description;
     	this.price = price;
@@ -73,16 +73,16 @@ public class JeloModel {
 		this.restoranName = restoranName;
 	}
 	
-	public void setSastojci(ArrayList<SastojakModel> sastojci) {
+	public void setSastojci(ArrayList<IngredientModel> sastojci) {
 		this.sastojci = sastojci;
 	}
 	
-	public ArrayList<SastojakModel> getSastojci() {
+	public ArrayList<IngredientModel> getIngredients() {
 		return this.sastojci;
 	}
 	
-	public SastojakModel getSastojakByIndex(Integer index) {
-		for (SastojakModel sastojak : sastojci) {
+	public IngredientModel getSastojakByIndex(Integer index) {
+		for (IngredientModel sastojak : sastojci) {
 			if (sastojci.indexOf(sastojak) == index) {
 				return sastojak;
 			}
@@ -90,20 +90,20 @@ public class JeloModel {
 		return null;
 	}
 	
-	public void addSastojak(SastojakModel sastojak) {
+	public void addSastojak(IngredientModel sastojak) {
 		this.sastojci.add(sastojak);
 	}
 	
-	public void setHranVrednosti(ArrayList<HranljivostModel> hranVred) {
+	public void setHranVrednosti(ArrayList<NutritionModel> hranVred) {
 		this.hranVrednosti = hranVred;
 	}
 	
-	public ArrayList<HranljivostModel> getHranVrednosti() {
+	public ArrayList<NutritionModel> getNutritions() {
 		return this.hranVrednosti;
 	}
 	
-	public HranljivostModel getHranVrednostByIndex(Integer index) {
-		for (HranljivostModel hrvr : hranVrednosti) {
+	public NutritionModel getHranVrednostByIndex(Integer index) {
+		for (NutritionModel hrvr : hranVrednosti) {
 			if (hranVrednosti.indexOf(hrvr) == index) {
 				return hrvr;
 			}
@@ -111,7 +111,7 @@ public class JeloModel {
 		return null;
 	}
 	
-	public void addHranljivost(HranljivostModel hrvr) {
+	public void addHranljivost(NutritionModel hrvr) {
 		this.hranVrednosti.add(hrvr);
 	}
 	

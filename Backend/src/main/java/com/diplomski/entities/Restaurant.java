@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="restoran")
-public class Restoran {
+public class Restaurant {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,8 +31,8 @@ public class Restoran {
 	@Column(name="telefon")
     private String phone;
 	
-	public Restoran () {}
-	public Restoran (Integer restoranId, String name, String description, String adress, String imgUrl, String phone) {
+	public Restaurant () {}
+	public Restaurant (Integer restoranId, String name, String description, String adress, String imgUrl, String phone) {
 		this.restoranId = restoranId;
 		this.name = name;
 		this.description = description;

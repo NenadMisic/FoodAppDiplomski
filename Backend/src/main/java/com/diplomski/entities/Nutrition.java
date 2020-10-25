@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="hranljivost")
-public class HranljivaVrednost {
+public class Nutrition {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,13 +22,13 @@ public class HranljivaVrednost {
 	@Column(name="jedinica_mere")
 	private String jedinicaMere;
 	
-	public HranljivaVrednost(String naziv, String jedinicaMere) {
+	public Nutrition(String naziv, String jedinicaMere) {
 		this.hranljivostId = null;
 		this.naziv = naziv;
 		this.jedinicaMere = jedinicaMere;
 	}
 
-	public HranljivaVrednost() {}
+	public Nutrition() {}
 	
 	public Integer getHranljivostId() {
 		return hranljivostId;

@@ -17,7 +17,7 @@ public class FullNutritionModel {
 		this.nutritionValueUnit = nutritionValueUnit;
 	}
 	
-	public FullNutritionModel(Integer nutritionId, HranljivostModel hrvr) {
+	public FullNutritionModel(Integer nutritionId, NutritionModel hrvr) {
 		this.nutritionId = nutritionId;
 		this.nutritionName = hrvr.getName();
 		this.nutritionValue = hrvr.getValue();

@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.diplomski.entities.Restoran;
-import com.diplomski.model.FullRestoranModel;
-import com.diplomski.model.JeloModel;
-import com.diplomski.model.RestoranModel;
-import com.diplomski.services.JeloService;
-import com.diplomski.services.RestoranService;
+import com.diplomski.entities.Restaurant;
+import com.diplomski.model.FullRestaurantModel;
+import com.diplomski.model.MealModel;
+import com.diplomski.model.RestaurantModel;
+import com.diplomski.services.FoodService;
+import com.diplomski.services.RestaurantService;
 
 @RestController
 public class MenuController {
 	
 	@Autowired
-	private RestoranService restoranService;
+	private RestaurantService restaurantService;
 	
 	@Autowired
-	private JeloService jeloService;
+	private FoodService foodService;
 	
-	@GetMapping(path="/restorani/{restoranName}/full")
-	public FullRestoranModel getRestoranWithMenu( @PathVariable("restoranName") String restoranName) {
-		String restoranNameFix = restoranName.replace("_", " ");
-		FullRestoranModel frm;
+	@GetMapping(path="/restorani/{restaurantName}/full")
+	public FullRestaurantModel getRestaurantWithMenu( @PathVariable("restaurantName") String restaurantName) {
+		String restaurantNameFix = restaurantName.replace("_", " ");
+		FullRestaurantModel frm;
 		
-		Restoran restoran = restoranService.getRestoranByName(restoranNameFix);
-		RestoranModel restoranMdl = new RestoranModel(restoran.getName(), restoran.getDescription(), restoran.getAdress(), restoran.getImgUrl(), restoran.getPhone());
-		ArrayList<JeloModel> jelovnik = jeloService.getJelaForRestoran(restoranNameFix);
+		Restaurant restaurant = restaurantService.getRestaurantByName(restaurantNameFix);
+		RestaurantModel restaurantMdl = new RestaurantModel(restaurant.getName(), restaurant.getDescription(), restaurant.getAdress(), restaurant.getImgUrl(), restaurant.getPhone());
+		ArrayList<MealModel> menu = foodService.getFoodForRestaurant(restaurantNameFix);
 		
-		frm = new FullRestoranModel(restoranMdl, jelovnik);
+		frm = new FullRestaurantModel(restaurantMdl, menu);
 		return frm;
 	}
 	

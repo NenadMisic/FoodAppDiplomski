@@ -4,15 +4,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.diplomski.entities.Jelo;
+import com.diplomski.entities.Meal;
 
-public interface JeloRepository extends CrudRepository<Jelo, Integer> {
+public interface MealRepository extends CrudRepository<Meal, Integer> {
 	
-	public Iterable<Jelo> findAllByRestoranId(Integer restoranId);
+	public Iterable<Meal> findAllByRestoranId(Integer restoranId);
 	
-	public Jelo findOneByName(String name);
+	public Meal findOneByName(String name);
 	
-	@Query(value = "SELECT j.jeloId FROM Jelo j WHERE j.name =:name and j.restoranId =:restoranId")
+	@Query(value = "SELECT j.jeloId FROM Meal j WHERE j.name =:name and j.restoranId =:restoranId")
 	public Integer getJeloIdByName(@Param("name") String name1, @Param("restoranId") Integer restoranId1);
 
 }

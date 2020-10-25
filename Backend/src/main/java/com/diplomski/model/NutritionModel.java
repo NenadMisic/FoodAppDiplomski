@@ -1,12 +1,12 @@
 package com.diplomski.model;
 
-public class HranljivostModel {
+public class NutritionModel {
 
 	private String name;
 	private Integer value;
 	private String unit;
 	
-	public HranljivostModel(String name, Integer value, String unit) {
+	public NutritionModel(String name, Integer value, String unit) {
 		this.name = name;
 		this.value = value;
 		this.unit = unit;

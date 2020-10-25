@@ -3,13 +3,13 @@ package com.diplomski.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.diplomski.entities.HranljivostiZaJelo;
+import com.diplomski.entities.IngredientsForMeal;
 
-public interface HranljivostiZaJeloRepository extends CrudRepository<HranljivostiZaJelo, Integer> {
+public interface IngredientsForMealRepository extends CrudRepository<IngredientsForMeal, Integer> {
 	
-	public Iterable<HranljivostiZaJelo> findByJeloId(Integer jeloId);
+	public Iterable<IngredientsForMeal> findByJeloId(Integer jeloId);
 	
 	@Transactional
 	public void deleteAllByJeloId(Integer jeloId);
-	
+
 }

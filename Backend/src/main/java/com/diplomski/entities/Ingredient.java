@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="sastojak")
-public class Sastojak {
+public class Ingredient {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -22,14 +22,14 @@ public class Sastojak {
 	@Column(name="jedinica_mere")
 	private String unit;
 	
-	public Sastojak(String name, String unit) {
+	public Ingredient(String name, String unit) {
 
 		this.sastojakId = null;
 		this.name = name;
 		this.unit = unit;
 	}
 	
-	public Sastojak() {}
+	public Ingredient() {}
 
 	public Integer getSastojakId() {
 		return sastojakId;

@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="hranljivosti_za_jela")
-public class HranljivostiZaJelo {
+public class NutritionsForMeal {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -25,14 +25,14 @@ public class HranljivostiZaJelo {
 	@Column(name="vrednost")
 	private Integer vrednost;
 
-	public HranljivostiZaJelo(Integer jeloId, Integer hranljivostId, Integer vrednost) {
+	public NutritionsForMeal(Integer jeloId, Integer hranljivostId, Integer vrednost) {
 		this.id = null;
 		this.jeloId = jeloId;
 		this.hranljivostId = hranljivostId;
 		this.vrednost = vrednost;
 	}
 	
-	public HranljivostiZaJelo() {}
+	public NutritionsForMeal() {}
 
 	public Integer getId() {
 		return id;

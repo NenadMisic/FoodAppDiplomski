@@ -15,7 +15,7 @@ public class FullIngredientModel {
 		this.ingredientAmountUnit = ingredientAmountUnit;
 	}
 	
-	public FullIngredientModel(Integer ingredientId, SastojakModel sastojak) {
+	public FullIngredientModel(Integer ingredientId, IngredientModel sastojak) {
 		this.ingredientId = ingredientId;
 		this.ingredientName = sastojak.getName();
 		this.ingredientAmount = sastojak.getAmount();

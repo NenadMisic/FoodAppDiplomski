@@ -1,7 +1,7 @@
 package com.diplomski.model;
 
 
-public class RestoranModel {
+public class RestaurantModel {
 	
 	private String name;
     private String description;
@@ -9,14 +9,14 @@ public class RestoranModel {
     private String imgUrl;
     private String phone;
     
-    public RestoranModel(String name, String description, String adress, String imgUrl, String phone) {
+    public RestaurantModel(String name, String description, String adress, String imgUrl, String phone) {
     	this.name = name;
     	this.description = description;
     	this.adress = adress;
     	this.imgUrl = imgUrl;
     	this.phone = phone;
     }
-    public RestoranModel() {}
+    public RestaurantModel() {}
 
 	public String getName() {
 		return name;

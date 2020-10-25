@@ -1,17 +1,17 @@
 package com.diplomski.model;
 
-public class SastojakModel {
+public class IngredientModel {
 
 	private String name;
 	private Integer amount;
 	private String unit;
 	
-	public SastojakModel(String name, Integer amount, String unit) {
+	public IngredientModel(String name, Integer amount, String unit) {
 		this.name = name;
 		this.amount = amount;
 		this.unit = unit;
 	}
-	public SastojakModel() {}
+	public IngredientModel() {}
 
 	public String getName() {
 		return name;
